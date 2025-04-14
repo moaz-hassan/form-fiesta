@@ -1,0 +1,139 @@
+.form_not_found {
+  text-align: center;
+}
+
+.formContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.formHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.formTitle {
+  margin: 0 0 0.5rem 0;
+  color: #1a1a1a;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.formDescription {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.lockedBanner {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #fff3f3;
+  color: #d32f2f;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.questionsContainer {
+  margin-bottom: 2rem;
+}
+
+.question {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.questionTitle {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.choice:hover {
+  background-color: #e0e0e0;
+}
+
+.selected {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+.radioInput {
+  margin-right: 0.75rem;
+  accent-color: #2196f3;
+}
+
+.choiceText {
+  flex: 1;
+}
+
+.textArea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #43a047;
+}
+
+.submitButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.error {
+  color: #d32f2f;
+}

@@ -1,0 +1,120 @@
+.formViewer {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .formHeader {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .formHeader h1 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .formDescription {
+    color: #666;
+    margin: 0.5rem 0;
+  }
+  
+  .formMeta {
+    display: flex;
+    gap: 1rem;
+    color: #888;
+    font-size: 0.9rem;
+  }
+  
+  .lockedBadge {
+    background: #ff4757;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  
+  .questionsSection {
+    margin-top: 2rem;
+  }
+  
+  .questionsSection h2 {
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+  
+  .questionContainer {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 6px;
+  }
+  
+  .questionTitle {
+    margin: 0 0 1rem 0;
+    color: #333;
+  }
+  
+  .choicesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .choiceItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .radioInput {
+    cursor: default;
+  }
+  
+  .choiceLabel {
+    margin: 0;
+  }
+  
+  .textAnswer {
+    background: white;
+    padding: 0.8rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .textAnswer em {
+    color: #555;
+    font-style: normal;
+  }
+  
+  .formFooter {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .backButton {
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .backButton:hover {
+    background: #e0e0e0;
+  }
+  
+  .notFound {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .notFound h1 {
+    color: #ff4757;
+  }
