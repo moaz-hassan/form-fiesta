@@ -14,6 +14,7 @@ export async function generateStaticParams() {
 export default async function FormPage({ params }) {
   const { formId } = await params;
   const form = await getFormById(formId);
+console.log(form);
 
   if (!form) {
     return (
