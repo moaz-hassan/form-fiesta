@@ -107,7 +107,7 @@ const FormsList = () => {
                 <button
                   className={styles.actionButton}
                   onClick={() => {
-                    navigator.clipboard.writeText(`/forms/${form.formId}`);
+                    navigator.clipboard.writeText(`https://form-fiesta.vercel.app/forms/${form.formId}`);
                     toast("Form Link Copied Successfully!");
                   }}
                 >
