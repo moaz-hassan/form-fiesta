@@ -6,13 +6,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "../_components/Spinner";
+import { validateEmail, validatePassword } from "@/services/validationUtils";
 
 export default function Page() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // ← step 1
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,20 +21,32 @@ export default function Page() {
       setError("Please enter both email and password.");
     } else {
       setError("");
-      setLoading(true); // ← step 2
+      setLoading(true);
       try {
-        const res = await logIn(email, password);
-        sessionStorage.setItem(
-          "userInfo",
-          JSON.stringify({
-            email: res?.user?.email,
-            uid: res?.user?.uid,
-          })
-        );
+        if (
+          validateEmail(email).isValid &&
+          validatePassword(password).isValid
+        ) {
+          const res = await logIn(email, password);
+          sessionStorage.setItem(
+            "userInfo",
+            JSON.stringify({
+              email: res?.user?.email,
+              uid: res?.user?.uid,
+            })
+          );
+        } else {
+          if (validateEmail(email).isValid === false) {
+            toast.error(validateEmail(email).message);
+          }
+          if (validatePassword(password).isValid === false) {
+            toast.error(validatePassword(password).message);
+          }
+        }
       } catch (error) {
         throw error;
       } finally {
-        setLoading(false); // ← step 3
+        setLoading(false);
         if (sessionStorage.getItem("emailVerfied") === "true") {
           sessionStorage.removeItem("emailVerfied");
           router.push("/");
@@ -81,7 +94,7 @@ export default function Page() {
           className={styles.login_button}
           disabled={loading}
         >
-          {loading ? 'Loading...' : "Login"}
+          {loading ? "Loading..." : "Login"}
         </button>
       </form>
       <div className={styles.reg}>

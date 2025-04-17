@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { signUp } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import { validateEmail, validatePassword } from "@/services/validationUtils";
+import { toast } from "react-toastify";
 
 export default function Page() {
   const router = useRouter();
@@ -12,7 +14,7 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // 🔄 حالة التحميل
+  const [loading, setLoading] = useState(false);
 
   const handleSignUp = async () => {
     if (password !== retypePassword) {
@@ -24,9 +26,18 @@ export default function Page() {
     setError("");
 
     try {
-      const res = await signUp(email, password);
-      if (res.success) {
-        router.push("/login");
+      if (validateEmail(email).isValid && validatePassword(password).isValid) {
+        const res = await signUp(email, password);
+        if (res.success) {
+          router.push("/login");
+        }
+      } else {
+        if (validateEmail(email).isValid === false) {
+          toast.error(validateEmail(email).message);
+        }
+        if (validatePassword(password).isValid === false) {
+          toast.error(validatePassword(password).message);
+        }
       }
     } catch (err) {
       console.error(err);
