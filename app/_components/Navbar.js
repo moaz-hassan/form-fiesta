@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Spinner from "./Spinner";
 import { logOut } from "@/lib/auth";
+import MobileNavBarAside from "./MobileNavBarAside";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,11 +15,12 @@ export default function Navbar() {
   const [userInfo, setUserInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuDisplayed, setIsMenuDisplayed] = useState(false);
+  const [isAsideOpen, setIsAsideOpen] = useState(false);
 
   useEffect(() => {
     setIsLoading(false);
     if (typeof window !== "undefined") {
-      const storedUserInfo = localStorage.getItem("userInfo");
+      const storedUserInfo = sessionStorage.getItem("userInfo");
       if (storedUserInfo) {
         setUserInfo(JSON.parse(storedUserInfo));
         setIsLoggedIn(true);
@@ -33,7 +35,7 @@ export default function Navbar() {
 
   function handleLogout() {
     logOut();
-    localStorage.removeItem("userInfo");
+    sessionStorage.removeItem("userInfo");
     setUserInfo(null);
     setIsLoggedIn(false);
     setIsMenuDisplayed(false);
@@ -54,8 +56,8 @@ export default function Navbar() {
         className={styles.logo}
         src="/logo.png"
         alt="logo"
-        width={50}
-        height={50}
+        width={40}
+        height={40}
         priority
       />
       <div className={styles.nav_links}>
@@ -80,6 +82,15 @@ export default function Navbar() {
           Contact
         </Link>
       </div>
+      <>
+        <i
+          className={`fa-solid fa-bars ${styles.menu_icon}`}
+          onClick={() => {
+            setIsAsideOpen(!isAsideOpen);
+          }}
+        ></i>
+        <MobileNavBarAside isOpen={isAsideOpen} onClose={setIsAsideOpen}/>
+      </>
       {isLoggedIn && (
         <div className={styles.drop_menu_conatiner}>
           <span
@@ -94,7 +105,7 @@ export default function Navbar() {
           {isMenuDisplayed && <DrobMenu />}
         </div>
       )}
-      {(!isLoggedIn && !isLoading) && (
+      {!isLoggedIn && !isLoading && (
         <div className={styles.auth}>
           <Link href="/login" className={styles.auth_link1}>
             Login
@@ -104,7 +115,7 @@ export default function Navbar() {
           </Link>
         </div>
       )}
-      {isLoading && <Spinner className={styles.nav_spinner} />}
+      {isLoading && <Spinner size="small" className={styles.nav_spinner} />}
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import styles from "../../dashboard.module.css";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
-import getFormsByUserId from "@/app/_services/getFormsByUserId";
+import getFormsByUserId from "@/services/getFormsByUserId";
 import { useEffect, useState } from "react";
 
 const FormsList = () => {
@@ -10,12 +10,11 @@ const FormsList = () => {
 
   useEffect(() => {
     async function getForms() {
-      const userId = JSON.parse(localStorage.getItem("userInfo")).uid;
+      const userId = JSON.parse(sessionStorage.getItem("userInfo")).uid;
       const formsData = await getFormsByUserId(userId);
       setForms(formsData);
     }
     getForms();
-    
   }, []);
   // console.log(forms);
 

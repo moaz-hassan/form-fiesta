@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getFormById } from "@/app/_services/getFormById";
+import { getFormById } from "@/services/getFormById";
 
 export function useFormData(formId) {
   const [form, setForm] = useState(null);

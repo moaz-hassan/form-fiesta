@@ -1,7 +1,5 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/app/_components/Navbar";
-import Footer from "@/app/_components/Footer";
 import { ToastContainer } from "react-toastify";
 export const metadata = {
   title: "Form Builder",

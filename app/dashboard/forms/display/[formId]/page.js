@@ -1,6 +1,6 @@
 import styles from "./form.module.css";
 import Link from "next/link";
-import { getFormById } from "@/app/_services/getFormById";
+import { getFormById } from "@/services/getFormById";
 
 export default async function FormViewer({ params }) {
   const { formId } = await params;

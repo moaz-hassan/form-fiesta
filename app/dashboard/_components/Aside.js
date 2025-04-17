@@ -2,15 +2,28 @@
 import Link from "next/link";
 import styles from "@/app/dashboard/dashboard.module.css";
 import { useParams, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const Aside = () => {
+const Aside = ({ isAside }) => {
   const pathname = usePathname();
   const params = useParams();
-  console.log();
-
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    setIsAdmin(
+      JSON.parse(sessionStorage.getItem("userInfo")).email ===
+        process.env.NEXT_PUBLIC_ADMIN_USER
+    );
+  }, [isAdmin]);
   return (
     <>
-      <aside className={styles.aside}>
+      <aside
+        className={styles.aside}
+        style={
+          isAside
+            ? { position: "absolute", left: 0 }
+            : { position: "absolute", left: "-500px" }
+        }
+      >
         <nav className={styles.nav_links}>
           <Link
             href="/dashboard"
@@ -20,6 +33,18 @@ const Aside = () => {
           >
             Dashboard
           </Link>
+          {isAdmin && (
+            <Link
+              href="/dashboard/users-accounts"
+              style={
+                pathname === "/dashboard/users-accounts"
+                  ? { backgroundColor: "#F5F6F7" }
+                  : null
+              }
+            >
+              Users Accounts
+            </Link>
+          )}
           <Link
             href="/dashboard/profile"
             style={

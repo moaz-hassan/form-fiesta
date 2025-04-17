@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "chart.js": "^4.4.8",
+    "chart.js": "^4.4.9",
     "date-fns": "^4.1.0",
     "firebase": "^11.6.0",
     "lucide-react": "^0.487.0",

@@ -1,10 +1,10 @@
 "use client";
 import Input from "@/app/dashboard/_components/Input";
 import styles from "./createForm.module.css";
-import addForm from "@/app/_services/addForm";
+import addForm from "@/services/addForm";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import createRandomString from "@/app/_services/generateRandomValue";
+import createRandomString from "@/services/generateRandomValue";
 
 const FormInfo = ({
   setFormTitle,

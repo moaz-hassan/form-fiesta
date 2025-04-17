@@ -2,9 +2,9 @@
 import styles from "../dashboard.module.css";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
-import getFormsByUserId from "@/app/_services/getFormsByUserId";
+import getFormsByUserId from "@/services/getFormsByUserId";
 import { useEffect, useState } from "react";
-import { changeIsLocked } from "@/app/_services/changeIsLocked";
+import { changeIsLocked } from "@/services/changeIsLocked";
 import { toast } from "react-toastify";
 
 const FormsList = () => {
@@ -12,7 +12,7 @@ const FormsList = () => {
 
   useEffect(() => {
     async function getForms() {
-      const userId = JSON.parse(localStorage.getItem("userInfo")).uid;
+      const userId = JSON.parse(sessionStorage.getItem("userInfo"))?.uid;
       const formsData = await getFormsByUserId(userId);
       setForms(formsData);
     }
@@ -107,7 +107,9 @@ const FormsList = () => {
                 <button
                   className={styles.actionButton}
                   onClick={() => {
-                    navigator.clipboard.writeText(`https://form-fiesta.vercel.app/forms/${form.formId}`);
+                    navigator.clipboard.writeText(
+                      `https://form-fiesta.vercel.app/forms/${form.formId}`
+                    );
                     toast("Form Link Copied Successfully!");
                   }}
                 >

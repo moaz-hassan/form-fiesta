@@ -1,6 +1,6 @@
 "use client";
 import { useFormStorage } from "@/hooks/useFormStorage";
-import { submitForm } from "@/app/_services/submitForm";
+import { submitForm } from "@/services/submitForm";
 import { toast } from "react-toastify";
 import Spinner from "@/app/_components/Spinner";
 import styles from "../FormStyles.module.css";
@@ -36,7 +36,7 @@ export default function FormSubmission({ formId, isLocked }) {
         await submitForm(formId, submissionData);
         clearAnswers();
         setSuccess(true);
-        navigate.push("/");
+        navigate.push(`?isSubmitted=true`);
       } catch (error) {
         toast.error("Failed to submit answer");
       } finally {
@@ -53,7 +53,7 @@ export default function FormSubmission({ formId, isLocked }) {
       disabled={isLocked || isSubmitting || success}
       className={styles.submitButton}
     >
-      {isSubmitting ? <Spinner /> : "Submit Form"}
+      {isSubmitting ? <Spinner size="small" position="center"/> : "Submit Form"}
     </button>
   );
 }

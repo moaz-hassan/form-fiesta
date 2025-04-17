@@ -3,7 +3,6 @@
 import styles from "@/app/sign-up/sign-up.module.css";
 import Link from "next/link";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { signUp } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
@@ -13,6 +12,7 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // 🔄 حالة التحميل
 
   const handleSignUp = async () => {
     if (password !== retypePassword) {
@@ -20,19 +20,19 @@ export default function Page() {
       return;
     }
 
+    setLoading(true);
+    setError("");
+
     try {
-      await signUp(email, password);
-      toast("User signed up successfully ✅");
-      toast("Check your inbox and verfiy your email !");
-      toast("Redirecting to login");
-      await new Promise(() => {
-        setTimeout(() => {
-          router.push("/login");
-        }, 3000);
-      });
+      const res = await signUp(email, password);
+      if (res.success) {
+        router.push("/login");
+      }
     } catch (err) {
       console.error(err);
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,8 +65,12 @@ export default function Page() {
 
       {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
 
-      <button className={styles.reg_button} onClick={handleSignUp}>
-        Sign Up
+      <button
+        className={styles.reg_button}
+        onClick={handleSignUp}
+        disabled={loading}
+      >
+        {loading ? "Loading..." : "Sign Up"}
       </button>
 
       <div className={styles.reg}>

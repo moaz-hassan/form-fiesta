@@ -34,8 +34,6 @@ function Header() {
         alt="header img"
         placeholder="blur"
         quality={100}
-        width={500}
-        height={300}
       />
     </div>
   );

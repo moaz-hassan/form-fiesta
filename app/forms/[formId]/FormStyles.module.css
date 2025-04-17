@@ -1,7 +1,12 @@
 .form_not_found {
   text-align: center;
 }
-
+.thankYouMessage{
+  text-align: center;
+}
+.thankYouMessage h2{
+  margin: 5px;
+}
 .formContainer {
   max-width: 800px;
   margin: 2rem auto;

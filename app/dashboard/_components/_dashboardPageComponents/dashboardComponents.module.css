@@ -1,0 +1,195 @@
+.chartContainer {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.chartContainer h3 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chartWrapper {
+    height: 300px;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.statsSummary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.5rem;
+}
+
+.statsSummary div {
+    text-align: center;
+}
+
+.statsSummary span {
+    display: block;
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+}
+
+.statsSummary strong {
+    font-size: 1.1rem;
+    color: #1e293b;
+}
+
+.recent_forms_section, .recent_responses_section {
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Activity Feed */
+.activityItem {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.activityIcon {
+    width: 40px;
+    height: 40px;
+    background: #f0fdf4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #22c55e;
+}
+
+.activityContent {
+    flex: 1;
+}
+
+.activityText {
+    margin-bottom: 0.25rem;
+}
+.recentResponsesDetails{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+.activityDate {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+.no_responses_error{
+    text-align: center;
+    font-size: 25px;
+    color: #6b7280;
+    padding: 15px;
+}
+
+
+
+/* Recent Forms Feed */
+.recent_forms_item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.recent_forms_icon {
+    width: 40px;
+    height: 40px;
+    background: #f0fdf4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #22c55e;
+}
+
+.recent_forms_content {
+    flex: 1;
+}
+
+.recent_forms_text {
+    margin-bottom: 0.25rem;
+}
+
+.recent_forms_date {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+.recent_form_link{
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 5px;
+    transition: 0.3s;
+}
+.recent_form_link:hover{
+    background-color:#f8fafc;
+}
+.recent_forms_details{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+.recent_forms_submissions {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.recent_forms_submissions strong {
+    font-weight: bold;
+    margin: 0 2px;
+}
+
+.no_forms_error{
+    text-align: center;
+    font-size: 25px;
+    color: #6b7280;
+    padding: 15px;
+}
+
+/* Form Stats */
+.formStatsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.formStatCard {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #3b82f6;
+}
+
+.formStatCard h3 {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.formStatCard p {
+    font-size: 1.5rem;
+    font-weight: 700;
+}

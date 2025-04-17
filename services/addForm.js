@@ -14,7 +14,6 @@ import {
     createdAt: serverTimestamp(),
     isLocked: false,
     questions: formData.questions,
-    submissions: [],
   });
 
   return formRef.id;

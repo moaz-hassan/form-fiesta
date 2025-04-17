@@ -16,11 +16,12 @@ export default function RootLayout({ children }) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAside, setIsAside] = useState(false);
 
   useEffect(() => {
     const checkAuthentication = () => {
       try {
-        const userInfo = localStorage.getItem("userInfo");
+        const userInfo = sessionStorage.getItem("userInfo");
 
         if (!userInfo) {
           throw new Error("User not authenticated");
@@ -52,9 +53,9 @@ export default function RootLayout({ children }) {
 
   return (
     <>
-      <Navbar />
+      <Navbar isAside={isAside} setIsAside={setIsAside}/>
       <div className={styles.container}>
-        <Aside />
+        <Aside isAside={isAside} setIsAside={setIsAside}/>
         <div className={styles.content_div}>
           <Suspense fallback={<Spinner size="large"/>}>{children}</Suspense>
         </div>

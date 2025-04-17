@@ -1,13 +1,13 @@
 import styles from "@/app/_components/components.module.css";
 
-function Spinner({ text, size = "small", ...rest }) {
+function Spinner({ text, size = "small", position = "0", ...rest }) {
   return (
     <div
       className={styles.loader_container}
       {...rest}
       style={
         size === "small"
-          ? { margin: "0 auto" }
+          ? { margin: `0 ${position === "center" ? "auto" : "0"}` }
           : size === "medium"
           ? { margin: "50px auto" }
           : size === "large"

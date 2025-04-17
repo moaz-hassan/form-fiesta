@@ -1,4 +1,4 @@
-import { getFormById } from "@/app/_services/getFormById";
+import { getFormById } from "@/services/getFormById";
 import styles from "../../../dashboard.module.css";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
@@ -16,9 +16,9 @@ async function getFormWithResponses(formId) {
 }
 
 const FormResponsesGrid = async ({ params, searchParams }) => {
-  const { formId } =await params; // No need for await here
+  const { formId } = await params; // No need for await here
   const formData = await getFormWithResponses(formId);
-  const {submissionNum} =await searchParams;
+  const { submissionNum } = await searchParams;
 
   const formatDate = (timestamp) => {
     if (!timestamp) return "No date";
@@ -65,13 +65,15 @@ const FormResponsesGrid = async ({ params, searchParams }) => {
         </div>
 
         <div className={styles.fullResponseDetails}>
-          {formData.questions?.map((question,index) => {
-            const answer = submission.answers.find(
+          {formData.questions?.map((question, index) => {
+            const answer = submission?.answers.find(
               (a) => a.questionId === question.id
             );
             return (
               <div key={question.id} className={styles.responseQuestion}>
-                <h3 className={styles.questionTitle}>{index+1}- {question.title}</h3>
+                <h3 className={styles.questionTitle}>
+                  {index + 1}- {question.title}
+                </h3>
                 <p className={styles.answerText}>
                   {question.choices[Number(answer?.answer)] || answer?.answer}
                 </p>
@@ -118,9 +120,9 @@ const FormResponsesGrid = async ({ params, searchParams }) => {
               </div>
               <div className={styles.responseDetails}>
                 {formData.questions?.slice(0, 1).map((question) => {
-                  const answer = submission.answers.find(
+                  const answer = submission?.answers?.find(
                     (a) => a.questionId === question.id
-                  );
+                  );                  
                   return (
                     <div key={question.id} className={styles.responseQuestion}>
                       <p className={styles.questionText}>{question.title}</p>

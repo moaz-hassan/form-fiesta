@@ -5,12 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Spinner from "../_components/Spinner";
 
 export default function Page() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // ← step 1
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +20,10 @@ export default function Page() {
       setError("Please enter both email and password.");
     } else {
       setError("");
+      setLoading(true); // ← step 2
       try {
         const res = await logIn(email, password);
-        localStorage.setItem(
+        sessionStorage.setItem(
           "userInfo",
           JSON.stringify({
             email: res?.user?.email,
@@ -30,8 +33,9 @@ export default function Page() {
       } catch (error) {
         throw error;
       } finally {
-        if (localStorage.getItem("emailVerfied") === "true") {
-          localStorage.removeItem("emailVerfied");
+        setLoading(false); // ← step 3
+        if (sessionStorage.getItem("emailVerfied") === "true") {
+          sessionStorage.removeItem("emailVerfied");
           router.push("/");
         } else {
           setError("Invalid credential");
@@ -72,8 +76,12 @@ export default function Page() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className={styles.login_button}>
-          Login
+        <button
+          type="submit"
+          className={styles.login_button}
+          disabled={loading}
+        >
+          {loading ? 'Loading...' : "Login"}
         </button>
       </form>
       <div className={styles.reg}>
