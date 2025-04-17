@@ -44,6 +44,7 @@ export default async function FormPage({ params, searchParams }) {
       : await checkIsSubmitted();
 
   const form = await getFormById(formId);
+console.log(form);
 
   if (!form) {
     return (
