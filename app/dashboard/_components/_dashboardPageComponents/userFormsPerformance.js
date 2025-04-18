@@ -1,11 +1,12 @@
 "use client";
 import getFormsByUserId from "@/services/getFormsByUserId";
-import styles from "./dashboardComponents.module.css"
+import styles from "./dashboardComponents.module.css";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const UserFormsPerformance = () => {
-  const [formsData, setFormsData] = useState();
+  const [formsData, setFormsData] = useState({});
+
   useEffect(() => {
     async function getFormsData() {
       let totalResponses = 0;
@@ -16,24 +17,25 @@ const UserFormsPerformance = () => {
         const res = await getFormsByUserId(
           JSON.parse(sessionStorage.getItem("userInfo")).uid
         );
+
         totalForms = res.length;
         for (let i = 0; i < res.length; i++) {
-          if (!res[i].isLocked) {
+          if (res[i].isLocked === false) {
             activeForms++;
           } else {
             nonActiveForms++;
           }
           totalResponses += res[i].attributes.submissions.length;
         }
-        setFormsData({
-          totalForms: totalForms,
-          activeForms: activeForms,
-          totalResponses: totalResponses,
-          nonActiveForms: nonActiveForms,
-        });
       } catch (error) {
         toast.error(error);
       }
+      setFormsData({
+        totalForms: totalForms,
+        activeForms: activeForms,
+        totalResponses: totalResponses,
+        nonActiveForms: nonActiveForms,
+      });
     }
     getFormsData();
   }, []);

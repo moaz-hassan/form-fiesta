@@ -49,8 +49,8 @@ export default function ResponseChart() {
     return e.title;
   });
 
-  const formsResponses = formsData.map((e) => {
-    return Number(e.attributes.submissions?.length || 0);
+  const formsResponses = formsData?.map((e) => {
+    return Number(e?.attributes?.submissions?.length || 0);
   });
 
   const formsDate = formsData.map((e) => {

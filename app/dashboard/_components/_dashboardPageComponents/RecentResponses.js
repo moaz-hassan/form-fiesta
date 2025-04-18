@@ -101,7 +101,7 @@ const RecentResponses = () => {
                 <p className={styles.activityText}>
                   You{" "}
                   <strong>
-                    received {form.attributes.submissions.length} responses
+                    received {form?.attributes?.submissions.length} responses
                   </strong>{" "}
                   &quot;
                   {form.title}&quot;

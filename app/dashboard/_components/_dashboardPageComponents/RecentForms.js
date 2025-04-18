@@ -51,7 +51,7 @@ const RecentForms = () => {
                     {convertDateFromSeconds(form?.createdAt.seconds)}
                   </span>
                   <span className={styles.recent_forms_submissions}>
-                    <strong>{form.attributes.submissions.length}</strong>
+                    <strong>{form?.attributes?.submissions.length}</strong>
                     Submissions
                   </span>
                 </div>
