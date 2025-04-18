@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { logOut } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
-const Navbar = ({isAside,setIsAside}) => {
+const Navbar = ({ isAside, setIsAside }) => {
   const [isMenuDisplayed, setIsMenuDisplayed] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
@@ -64,12 +64,11 @@ const Navbar = ({isAside,setIsAside}) => {
               placeholder="blur"
               className={styles.logo}
             />
-            <h1>Formify</h1>
+            <h1>Form Fiesta</h1>
           </div>
         </Link>
       </div>
       <div className={styles.search_div}>
-        
         <i className="fa-solid fa-bell"></i>
         <i className="fa-solid fa-user" onClick={handleMenuDisplay}></i>
         {isMenuDisplayed && isLoggedIn ? <DrobMenu /> : null}

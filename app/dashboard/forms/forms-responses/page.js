@@ -80,7 +80,7 @@ const FormsList = () => {
                 </div>
                 <div className={styles.metaItem}>
                   <span className={styles.metaLabel}>Submissions:</span>
-                  <span>{form.attributes.submissions?.length || 0}</span>
+                  <span>{form?.attributes?.submissions?.length || 0}</span>
                 </div>
               </div>
               <div className={styles.view_res_btn}>
