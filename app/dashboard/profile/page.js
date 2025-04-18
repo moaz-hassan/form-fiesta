@@ -28,21 +28,20 @@ const Profile = () => {
           }
           totalResponses += res[i].attributes.submissions.length;
         }
-        setFormsData({
-          totalForms: totalForms,
-          activeForms: activeForms,
-          totalResponses: totalResponses,
-          nonActiveForms: nonActiveForms,
-        });
+        
         
       } catch (error) {
         toast.error(error);
       }
+      setFormsData({
+        totalForms: totalForms,
+        activeForms: activeForms,
+        totalResponses: totalResponses,
+        nonActiveForms: nonActiveForms,
+      });
     }
     getFormsData();
   }, []);
-  console.log(formsData);
-
   const stats = [
     { label: "Forms Created", value: formsData?.totalForms, icon: "📋" },
     { label: "Total Submissions", value: formsData?.totalResponses, icon: "👥" },
