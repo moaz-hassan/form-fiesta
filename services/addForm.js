@@ -6,6 +6,8 @@ import {
 } from "firebase/firestore";
 
  const addForm = async (formData) => {
+  console.log(formData);
+  
   const formRef = await addDoc(collection(db, "forms"), {
     formId:formData.formId,
     title: formData.title,
@@ -15,7 +17,8 @@ import {
     isLocked: false,
     questions: formData.questions,
   });
-
+  
+  
   return formRef.id;
 };
 

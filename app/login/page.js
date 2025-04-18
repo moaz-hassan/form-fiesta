@@ -28,11 +28,14 @@ export default function Page() {
           validatePassword(password).isValid
         ) {
           const res = await logIn(email, password);
+          console.log(res);
+
           sessionStorage.setItem(
             "userInfo",
             JSON.stringify({
               email: res?.user?.email,
               uid: res?.user?.uid,
+              createdAt: res?.user?.metadata?.creationTime,
             })
           );
         } else {

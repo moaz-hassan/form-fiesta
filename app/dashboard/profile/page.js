@@ -1,111 +1,95 @@
 'use client'
-import { useState } from "react";
+import { ArrowLeft, Camera, Edit } from "lucide-react";
 import Link from "next/link";
-import ProfileHeader from "./_components/ProfileHeader";
-import ProfileStats from "./_components/ProfileStats";
-import ProfileSettings from "./_components/ProfileSettings";
 import styles from "./userProfile.module.css";
+import ProfileInfo from "./ProfileInfo";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import getFormsByUserId from "@/services/getFormsByUserId";
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState("overview");
+  const [formsData, setFormsData] = useState({});
+  useEffect(() => {
+    async function getFormsData() {
+      let totalResponses = 0;
+      let totalForms = 0;
+      let activeForms = 0;
+      let nonActiveForms = 0;
+      try {
+        const res = await getFormsByUserId(
+          JSON.parse(sessionStorage.getItem("userInfo")).uid
+        );
+        totalForms = res.length;
+        for (let i = 0; i < res.length; i++) {
+          if (!res[i].isLocked) {
+            activeForms++;
+          } else {
+            nonActiveForms++;
+          }
+          totalResponses += res[i].attributes.submissions.length;
+        }
+        setFormsData({
+          totalForms: totalForms,
+          activeForms: activeForms,
+          totalResponses: totalResponses,
+          nonActiveForms: nonActiveForms,
+        });
+        
+      } catch (error) {
+        toast.error(error);
+      }
+    }
+    getFormsData();
+  }, []);
+  console.log(formsData);
 
-  // Sample user data - in a real app, this would come from a database or API
-  const userData = {
-    id: "123456",
-    name: "John Doe",
-    email: "john.doe@example.com",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    role: "Pro Member",
-    joined: "Jan 2023",
-    lastActive: "Today",
-  };
-
-  // Sample stats data
-  const statsData = {
-    formsCreated: 28,
-    submissions: 1245,
-    conversionRate: "68%",
-    activeUsers: 126,
-    savedTemplates: 7,
-  };
+  const stats = [
+    { label: "Forms Created", value: formsData?.totalForms, icon: "📋" },
+    { label: "Total Submissions", value: formsData?.totalResponses, icon: "👥" },
+    // { label: "Conversion Rate", value: "68%", icon: "📈" },
+    // { label: "Active Users", value: "126", icon: "⏱️" },
+    // { label: "Saved Templates", value: "7", icon: "📑" },
+  ];
 
   return (
-    <div className={styles.profileContainer}>
-      <div className={styles.backLink}>
-        <Link href="/dashboard">← Back to Dashboard</Link>
+    <div className={styles.container}>
+      <Link href="/dashboard" className={styles.backLink}>
+        <ArrowLeft size={20} />
+        Back to Dashboard
+      </Link>
+
+      <div className={styles.profileHeader}>
+        <div className={styles.avatarWrapper}>
+          <div className={styles.avatar}>
+            <div className={styles.avatarContent}>
+              <Camera className="w-8 h-8 text-purple-500" />
+            </div>
+          </div>
+          <button className={styles.cameraButton}>
+            <Camera className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className={styles.profileInfo}>
+          <ProfileInfo />
+        </div>
       </div>
 
-      <ProfileHeader userData={userData} />
-
-      <div className={styles.tabsContainer}>
-        <button
-          className={`${styles.tabButton} ${
-            activeTab === "overview" ? styles.activeTab : ""
-          }`}
-          onClick={() => setActiveTab("overview")}
-        >
-          Overview
-        </button>
-        <button
-          className={`${styles.tabButton} ${
-            activeTab === "forms" ? styles.activeTab : ""
-          }`}
-          onClick={() => setActiveTab("forms")}
-        >
-          My Forms
-        </button>
-        <button
-          className={`${styles.tabButton} ${
-            activeTab === "settings" ? styles.activeTab : ""
-          }`}
-          onClick={() => setActiveTab("settings")}
-        >
-          Settings
-        </button>
-      </div>
-
-      <div className={styles.contentContainer}>
-        {activeTab === "overview" && (
-          <div className={styles.overviewContent}>
-            <ProfileStats statsData={statsData} />
-            <div className={styles.recentActivity}>
-              <h3>Recent Activity</h3>
-              <div className={styles.activityList}>
-                <div className={styles.activityItem}>
-                  <span className={styles.activityDate}>Today</span>
-                  <span className={styles.activityText}>
-                    Created a new form &quot;Customer Feedback&quot;
-                  </span>
-                </div>
-                <div className={styles.activityItem}>
-                  <span className={styles.activityDate}>Yesterday</span>
-                  <span className={styles.activityText}>
-                    Received 35 new form submissions
-                  </span>
-                </div>
-                <div className={styles.activityItem}>
-                  <span className={styles.activityDate}>3 days ago</span>
-                  <span className={styles.activityText}>
-                    Updated profile information
-                  </span>
+      <div className={styles.statsSection}>
+        <h2 className={styles.statsTitle}>Your Stats</h2>
+        <div className={styles.statsGrid}>
+          {stats.map((stat) => (
+            <div key={stat.label} className={styles.statCard}>
+              <div className={styles.statContent}>
+                <div className={styles.statIcon}>{stat.icon}</div>
+                <div className={styles.statInfo}>
+                  <p className={styles.statLabel}>{stat.label}</p>
+                  <p className={styles.statValue}>{stat.value}</p>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {activeTab === "forms" && (
-          <div className={styles.formsContent}>
-            <h3>My Forms</h3>
-            <p>
-              This section would display a list of the user&apos;s created forms.
-            </p>
-            {/* Form list would go here */}
-          </div>
-        )}
-
-        {activeTab === "settings" && <ProfileSettings userData={userData} />}
+          ))}
+        </div>
       </div>
     </div>
   );

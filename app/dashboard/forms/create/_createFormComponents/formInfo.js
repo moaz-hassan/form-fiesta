@@ -17,7 +17,7 @@ const FormInfo = ({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedUserInfo = localStorage.getItem("userInfo");
+      const storedUserInfo = sessionStorage.getItem("userInfo");
       if (storedUserInfo) {
         setFormData({
           formId: createRandomString(),
@@ -98,6 +98,8 @@ const FormInfo = ({
         await addForm(formData);
         toast.success("Form published successfully!");
       } catch (error) {
+        console.log(error);
+        
         toast.error("Failed to publish form. Please try again.");
       }
     }

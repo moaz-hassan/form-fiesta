@@ -1,11 +1,3 @@
-/**
- * Generates a random string
- * @param {object} options - Configuration options
- * @param {number} [options.length=10] - Length of the string
- * @param {string} [options.charset='alphanumeric'] - Character set ('alphanumeric', 'alphabetic', 'numeric', 'hex', 'binary', 'custom')
- * @param {string} [options.customCharset=''] - Custom characters to use (when charset='custom')
- * @returns {string} Randomly generated string
- */
 export default function createRandomString(options = {}) {
     const {
       length = 24,
@@ -36,5 +28,5 @@ export default function createRandomString(options = {}) {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
   
-    return result;
+    return String(result);
   }

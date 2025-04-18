@@ -148,7 +148,6 @@
 .recent_forms_details{
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: 100px;
 }
 .recent_forms_submissions {

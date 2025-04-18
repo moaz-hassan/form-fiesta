@@ -9,7 +9,7 @@ function CreateForm() {
   const navigate = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem("userInfo") === null) {
+    if (sessionStorage.getItem("userInfo") === null) {
       navigate("/");
       toast.error("You are not authorized to view this page.");
       return;

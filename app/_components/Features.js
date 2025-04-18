@@ -15,13 +15,13 @@ const Features = () => {
               ),
               title: "Create Form",
               description:
-                "Design professional forms with our intuitive drag-and-drop builder",
+                "Design professional forms with our intuitive builder",
             },
             {
               icon: <Share2 className={`${styles.icon} ${styles.iconShare}`} />,
               title: "Share It",
               description:
-                "Share your form with anyone through a simple link or embed it",
+                "Share your form with anyone through a simple link",
             },
             {
               icon: (

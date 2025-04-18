@@ -10,7 +10,7 @@ const QuestionContainer = ({ index, qs, questions, setQuestions, ...rest }) => {
   return (
     <div className={styles.form_container} {...rest}>
       <div className={styles.form_question}>
-      <span onClick={() => deleteQs(index, setQuestions, questions)}>X</span>
+        <span onClick={() => deleteQs(index, setQuestions, questions)}>X</span>
         <Input
           type="text"
           placeholder="Write the question here..."
@@ -27,6 +27,7 @@ const QuestionContainer = ({ index, qs, questions, setQuestions, ...rest }) => {
         />
       </div>
       <Select
+        className={styles.select_div}
         options={["multy-choices", "text"]}
         value={qs.type}
         onChange={(e) =>

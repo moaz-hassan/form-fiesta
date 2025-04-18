@@ -2,7 +2,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 export const metadata = {
-  title: "Form Builder",
+  title: "Form Fiesta",
   description:
     "Create custom forms effortlessly with our intuitive form builder app. Build, design, and deploy personalized forms for any purpose, all with a user-friendly interface and powerful backend support.",
 };

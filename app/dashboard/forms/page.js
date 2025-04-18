@@ -85,7 +85,7 @@ const FormsList = () => {
 
                 <div className={styles.metaItem}>
                   <span className={styles.metaLabel}>Submissions:</span>
-                  <span>{form.submissions?.length || 0}</span>
+                  <span>{form?.attributes?.submissions?.length || 0}</span>
                 </div>
               </div>
               <div className={styles.cardActions}>
@@ -108,7 +108,7 @@ const FormsList = () => {
                   className={styles.actionButton}
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `forms/${form.formId}`
+                      `https://form-fiesta.vercel.app/forms/${form.formId}`
                     );
                     toast("Form Link Copied Successfully!");
                   }}
