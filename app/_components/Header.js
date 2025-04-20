@@ -1,8 +1,14 @@
+"use client";
 import Image from "next/image";
 import styles from "@/app/_components/components.module.css";
 import headerImage from "@/public/header_image.png";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 function Header() {
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    setIsLogin(JSON.parse(sessionStorage?.getItem("userInfo")));
+  }, []);
   return (
     <div className={styles.header}>
       <div className={styles.header_div}>
@@ -17,16 +23,18 @@ function Header() {
           deploy them easily. Save time and focus on what matters most – growing
           your business.
         </p>
-        <div>
-          <div className={styles.auth}>
-            <Link href="/login" className={styles.auth_link3}>
-              Login
-            </Link>
-            <Link href="/sign-up" className={styles.auth_link4}>
-              Sign Up
-            </Link>
+        {!isLogin && (
+          <div>
+            <div className={styles.auth}>
+              <Link href="/login" className={styles.auth_link3}>
+                Login
+              </Link>
+              <Link href="/sign-up" className={styles.auth_link4}>
+                Sign Up
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <Image
         className={styles.img}
