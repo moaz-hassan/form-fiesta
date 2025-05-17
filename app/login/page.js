@@ -1,10 +1,10 @@
 "use client";
-import styles from "@/app/login/login.module.css";
+import { toast } from "react-toastify";
 import { logIn } from "@/lib/auth";
+import styles from "@/app/login/login.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import Spinner from "../_components/Spinner";
 import { validateEmail, validatePassword } from "@/services/validationUtils";
 

@@ -51,7 +51,7 @@ const RecentForms = () => {
                     {convertDateFromSeconds(form?.createdAt.seconds)}
                   </span>
                   <span className={styles.recent_forms_submissions}>
-                    <strong>{form?.attributes?.submissions.length}</strong>
+                    <strong>{form?.attributes?.submissions.length || 0}</strong>
                     Submissions
                   </span>
                 </div>
@@ -59,7 +59,9 @@ const RecentForms = () => {
             </div>
           </Link>
         ))}
-        {(formsData?.length === 0 && <h2 className={styles.no_forms_error}>No Forms Created</h2>)}
+        {formsData?.length === 0 && (
+          <h2 className={styles.no_forms_error}>No Forms Created</h2>
+        )}
       </div>
     </section>
   );
