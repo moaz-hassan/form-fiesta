@@ -32,8 +32,8 @@ async function checkIsSubmitted() {
 }
 
 export default async function FormPage({ params, searchParams }) {
-  const asyncParams = await params; // ✅ await the params object
-  const asyncSearchParams = await searchParams; // ✅ await the searchParams object
+  const asyncParams = await params; 
+  const asyncSearchParams = await searchParams; 
 
   const { formId } = asyncParams;
 
@@ -44,7 +44,6 @@ export default async function FormPage({ params, searchParams }) {
       : await checkIsSubmitted();
 
   const form = await getFormById(formId);
-console.log(form);
 
   if (!form) {
     return (

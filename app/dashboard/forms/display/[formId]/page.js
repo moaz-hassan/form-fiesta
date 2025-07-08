@@ -6,8 +6,7 @@ export default async function FormViewer({ params }) {
   const { formId } = await params;
 
   try {
-    const form = await getFormById(formId);
-
+    const form = await getFormById(formId);    
     const formatDate = (timestamp) => {
       if (!timestamp) return "Unknown date";
       try {
